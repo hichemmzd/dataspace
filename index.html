@@ -6,16 +6,14 @@
   <title>DATA SPACE — The Data Heist | Open Day 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Special+Elite&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Oswald:wght@700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕵️‍♂️</text></svg>">
 
-  
   <style>
     :root[data-theme="dark"] {
       --bg-primary: #070709;
       --bg-secondary: #0d0e14;
-      --bg-card: rgba(18, 19, 26, 0.85);
-      --bg-card-hover: rgba(225, 29, 72, 0.15);
+      --bg-card: rgba(18, 19, 26, 0.88);
       --border-color: rgba(255, 255, 255, 0.1);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
@@ -32,7 +30,6 @@
       --bg-primary: #f8fafc;
       --bg-secondary: #ffffff;
       --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-hover: rgba(185, 28, 28, 0.08);
       --border-color: rgba(185, 28, 28, 0.18);
       --text-main: #0f172a;
       --text-muted: #64748b;
@@ -52,13 +49,31 @@
       transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
     }
 
-    body {
+  body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* في الـ Dark Mode: دمج الصورة مع طبقة ظل سوداء */
+    :root[data-theme="dark"] body {
+      background-image: 
+        radial-gradient(circle at center, rgba(7, 7, 9, 0.8) 0%, rgba(7, 7, 9, 0.96) 85%),
+        url('data-heist-logo.jfif');
+    }
+
+    /* في الـ Light Mode: طبقة بيضاء بنسبة 94% تترك الشعار كأثر ورقي خافت جداً */
+    :root[data-theme="light"] body {
+      background-image: 
+        radial-gradient(circle at center, rgba(248, 250, 252, 0.92) 0%, rgba(248, 250, 252, 0.98) 85%),
+        url('data-heist-logo.jfif');
     }
 
     .bg-ambient {
@@ -344,57 +359,391 @@
       font-size: 1rem;
     }
 
-    /* DEPARTMENTS */
-    .dept-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem;
+    /* REALISTIC VINTAGE NEWSPAPER PRESENTATION */
+    .newspaper-stage {
+      perspective: 1400px;
+      margin: 2rem auto 4rem;
+      display: flex;
+      justify-content: center;
     }
 
-    .dept-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 2rem 1.8rem;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    .vintage-newspaper {
+      width: 100%;
+      max-width: 960px;
+      background: #cbb493;
+      background-image: 
+        radial-gradient(ellipse at center, rgba(235, 218, 194, 0.95) 0%, rgba(186, 156, 120, 0.95) 100%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0px, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 3px);
+      color: #171310 !important;
+      border: 1.5mm solid #6d5438;
+      padding: 2.2rem 2.4rem;
+      transform: rotate(-1.2deg);
+      box-shadow: 
+        15px 25px 60px rgba(0, 0, 0, 0.9),
+        -5px 5px 20px rgba(0, 0, 0, 0.45),
+        inset 0 0 80px rgba(74, 49, 21, 0.4);
       position: relative;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      font-family: 'Old Standard TT', Georgia, serif;
     }
 
-    .dept-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 12px 35px rgba(225, 29, 72, 0.2);
+    .vintage-newspaper:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 
+        20px 30px 75px rgba(0, 0, 0, 0.95),
+        0 0 40px rgba(225, 29, 72, 0.3),
+        inset 0 0 70px rgba(74, 49, 21, 0.4);
     }
 
-    .dept-header {
+    .vintage-newspaper * {
+      color: #171310 !important;
+      background: transparent !important;
+      transition: none !important;
+    }
+
+    .paper-stamp {
+      position: absolute;
+      top: 2rem;
+      right: 2.2rem;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.85rem;
+      color: #991b1b !important;
+      border: 2px dashed #991b1b;
+      padding: 4px 10px;
+      transform: rotate(4deg);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: rgba(203, 180, 147, 0.6) !important;
+      pointer-events: none;
+    }
+
+    .paper-masthead {
+      text-align: center;
+      border-bottom: 3px double #171310;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .paper-kicker {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .paper-main-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.3rem, 5.8vw, 4.4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin: 4px 0 6px;
+      border-top: 1px solid #171310;
+      border-bottom: 1px solid #171310;
+      padding: 4px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .paper-meta-strip {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.6rem;
-    }
-
-    .dept-title {
-      font-size: 1.7rem;
-      font-weight: 900;
-      color: var(--accent);
-    }
-
-    .dept-role-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--gold-accent);
+      border-top: 1px solid #171310;
+      border-bottom: 1px solid #171310;
+      padding: 3px 0;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.72rem;
+      font-weight: bold;
       text-transform: uppercase;
-      font-weight: 800;
     }
 
-    .dept-lead {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 1.35rem;
+    .paper-lead-story {
+      text-align: center;
+      border-bottom: 1.5px solid #171310;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .paper-headline {
+      font-family: 'Oswald', Impact, sans-serif;
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .paper-deck {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .paper-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .paper-col {
+      border-right: 1px solid #7c6853;
+      padding-right: 12px;
+      text-align: justify;
+    }
+
+    .paper-col:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .paper-col-header {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px solid #171310;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      line-height: 1.15;
+    }
+
+    .paper-col-text {
+      font-size: 0.82rem;
+      line-height: 1.48;
+      text-indent: 1em;
+      margin-bottom: 8px;
+    }
+
+    .paper-col-text strong {
+      text-decoration: underline;
+    }
+
+    .paper-agenda-strip {
+      border-top: 3px double #171310;
+      padding-top: 10px;
+    }
+
+    .agenda-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-align: center;
+      font-weight: 700;
+      border-bottom: 1px solid #171310;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+    }
+
+    .agenda-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      list-style: none;
+    }
+
+    .agenda-items li {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      padding: 8px;
+      border: 1px solid rgba(23, 19, 16, 0.45);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .agenda-items li strong {
+      display: block;
+      color: #991b1b !important;
+      margin-bottom: 3px;
+      font-size: 0.8rem;
+    }
+
+    /* VINTAGE ORNAMENTAL FOOTER */
+    .vintage-footer-brand {
+      margin-top: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vintage-flourish {
+      width: 250px;
+      height: 15px;
+      color: #171310;
+      opacity: 0.85;
+    }
+
+    .vintage-brand-name {
+      font-family: 'UnifrakturCook', 'Old Standard TT', serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.18em;
+      color: #171310 !important;
+      line-height: 1;
+      margin: 2px 0;
+      text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.4);
+    }
+
+    .vintage-brand-sub {
+      font-family: 'Old Standard TT', Georgia, serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-style: italic;
+      color: #524334 !important;
+      margin-bottom: 2px;
+    }
+
+    /* ALTERNATING TIMELINE FOR DEPARTMENTS */
+    .timeline-container {
+      position: relative;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem 0;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--accent), transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 3.5rem;
+      position: relative;
+      width: 100%;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-end;
+    }
+
+    .timeline-content {
+      width: 48%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 40px rgba(225, 29, 72, 0.25);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      z-index: 10;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .character-persona-header {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .char-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .char-avatar-img {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+      background: #0f172a;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .char-avatar-img:nth-child(2) {
+      transform: translateX(-18px);
+      border-color: var(--gold-accent);
+      z-index: 1;
+    }
+
+    .char-meta-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .char-persona-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gold-accent);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .char-names {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .dept-title-badge {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .dept-lead-person {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .why-chosen-box {
+      background: rgba(225, 29, 72, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 0.8rem 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-bottom: 1.2rem;
+    }
+
+    .why-chosen-box strong {
+      color: var(--gold-accent);
+      font-family: 'JetBrains Mono', monospace;
+      display: block;
+      margin-bottom: 3px;
     }
 
     .dept-subunits {
@@ -404,7 +753,7 @@
     .dept-subunits li {
       font-size: 0.88rem;
       color: var(--text-muted);
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
@@ -415,7 +764,80 @@
       content: "▹";
       color: var(--accent);
       font-weight: bold;
-      font-size: 1rem;
+    }
+
+    /* COMPACT SOUVENIRS CORNER */
+    .souvenirs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .souvenir-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .souvenir-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 25px rgba(225, 29, 72, 0.2);
+    }
+
+    .souvenir-icon-box {
+      width: 100%;
+      height: 140px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border: 1px dashed var(--border-color);
+    }
+
+    .souvenir-icon-box img {
+      max-width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .souvenir-card:hover .souvenir-icon-box img {
+      transform: scale(1.05);
+    }
+
+    .souvenir-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    .souvenir-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      color: #ffffff;
+    }
+
+    .souvenir-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
     }
 
     /* OPERATIONS */
@@ -593,6 +1015,23 @@
       font-size: 0.9rem;
       color: var(--text-muted);
     }
+
+    @media (max-width: 900px) {
+      .paper-columns-grid { grid-template-columns: repeat(2, 1fr); }
+      .agenda-items { grid-template-columns: repeat(2, 1fr); }
+      .paper-col:nth-child(2) { border-right: none; }
+    }
+
+    @media (max-width: 860px) {
+      .timeline-container::before { left: 20px; }
+      .timeline-item, .timeline-item:nth-child(even) { justify-content: flex-start; padding-left: 50px; }
+      .timeline-content { width: 100%; }
+      .timeline-dot { left: 20px; }
+      .vintage-newspaper { transform: none; padding: 1.5rem; }
+      .paper-columns-grid { grid-template-columns: 1fr; }
+      .paper-col { border-right: none; padding-right: 0; margin-bottom: 1rem; }
+      .agenda-items { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -618,6 +1057,7 @@
   </header>
 
   <main class="container">
+    <!-- HERO -->
     <section class="hero">
       <img src="mask.PNG" alt="Heist Mask" class="hero-mask-floating" />
 
@@ -663,80 +1103,291 @@
       </div>
     </section>
 
+    <!-- REALISTIC VINTAGE NEWSPAPER SECTION -->
+    <section>
+      <h2 class="section-title">
+        <img src="vintage.jpg" alt="Mask" class="title-mask-icon" />
+        The Resistance Gazette — El Periódico
+      </h2>
+      <p class="section-sub">A leaked vintage press dispatch documenting the tactical deployment of DATA SPACE at ENSSEA.</p>
+
+      <div class="newspaper-stage">
+        <article class="vintage-newspaper">
+          <div class="paper-stamp">CONFIDENTIAL // 2026</div>
+
+          <header class="paper-masthead">
+            <div class="paper-kicker">EDICIÓN EXTRAORDINARIA // ENSSEA CAMPUS</div>
+            <h1 class="paper-main-name">DATA SPACE CHRONICLE</h1>
+            <div class="paper-meta-strip">
+              <span>VOL. XXVI — NO. 142</span>
+              <span>KOLÉA, TIPAZA</span>
+              <span>ANNUAL OPEN DAY 2026</span>
+              <span>PRICE: DATA ONLY</span>
+            </div>
+          </header>
+
+          <div class="paper-lead-story">
+            <h2 class="paper-headline">"OPERATION OPEN DAY: STRATEGIC INTEL SYNDICATE UNVEILED"</h2>
+            <p class="paper-deck">
+              Authorities confirm: DATA SPACE operatives have secured the academic quadrant. The vault doors are thrown wide open for students of all promotions to infiltrate, analyze, and master the machinery of predictive intelligence.
+            </p>
+          </div>
+
+          <div class="paper-columns-grid">
+            <div class="paper-col">
+              <h3 class="paper-col-header">I. IT CELLS</h3>
+              <p class="paper-col-text">Operating under rigorous encryption protocols, the <strong>IT Command</strong> deploys neural architectures, statistical regressions, and end-to-end data pipelines.</p>
+              <p class="paper-col-text">Mastering <strong>Python, R, and Deep Learning</strong>, their work neutralizes empirical unpredictability and executes predictive maneuvers with clinical precision.</p>
+            </div>
+
+            <div class="paper-col">
+              <h3 class="paper-col-header">II. RE CORRIDORS</h3>
+              <p class="paper-col-text">Directing strategic negotiations, high-level corporate agreements, and inter-university pacts across academic networks.</p>
+              <p class="paper-col-text"><strong>External Relations</strong> commands the diplomatic frontline, ensuring operational corridors stay cleared, fully supplied, and reinforced by essential industry sponsorships.</p>
+            </div>
+
+            <div class="paper-col">
+              <h3 class="paper-col-header">III. RH BUREAU</h3>
+              <p class="paper-col-text">Orchestrating internal talent allocation, member development, and strict operational discipline throughout the year.</p>
+              <p class="paper-col-text">The <strong>RH Division</strong> guarantees that every single operative functions at peak tactical capability across workshops, bootcamps, and competitive engagements.</p>
+            </div>
+
+            <div class="paper-col">
+              <h3 class="paper-col-header">IV. COM BROADCAST</h3>
+              <p class="paper-col-text">Dictating public perception across external frequencies and commanding real-time media narrative coverage.</p>
+              <p class="paper-col-text"><strong>Communication & Media</strong> produces high-impact visuals, photographic bulletins, and cinematic narratives that make the movement recognizable campus-wide.</p>
+            </div>
+          </div>
+
+          <div class="paper-agenda-strip">
+            <div class="agenda-title">★ MANDATORY PROTOCOLS FOR VISITING RECRUITS ★</div>
+            <ul class="agenda-items">
+              <li>
+                <strong>ONLINE GAMES</strong>
+                Scan the encrypted QR challenge to breach the virtual vault and test logic reflexes under pressure.
+              </li>
+              <li>
+                <strong>MEET THE MEMBERS</strong>
+                Direct debriefings with department leads regarding technical tracks, toolsets, and recruitment.
+              </li>
+              <li>
+                <strong>TAKE A PHOTO</strong>
+                Wear the iconic red heist cloak with the Dali mask for your permanent recruit portrait at the booth.
+              </li>
+              <li>
+                <strong>HEIST SOUVENIRS</strong>
+                Receive bespoke folded origami swans, vinyl stickers, and custom resistance badges on-site.
+              </li>
+            </ul>
+          </div>
+
+          <!-- VINTAGE ORNAMENTAL BRANDING -->
+          <div class="vintage-footer-brand">
+            <svg class="vintage-flourish" viewBox="0 0 500 40" fill="currentColor">
+              <path d="M250,20 C230,12 210,5 180,18 C160,26 140,12 110,20 C80,27 60,15 30,20 L0,20 L30,21 C60,26 80,14 110,21 C140,29 160,15 180,23 C210,36 230,29 250,21 C270,29 290,36 320,23 C340,15 360,29 390,21 C420,14 440,26 470,21 L500,20 L470,20 C440,15 420,27 390,20 C360,12 340,26 320,18 C290,5 270,12 250,20 Z"/>
+              <circle cx="250" cy="20" r="3.5"/>
+              <circle cx="232" cy="20" r="2"/>
+              <circle cx="268" cy="20" r="2"/>
+            </svg>
+            
+            <div class="vintage-brand-name">Data Space</div>
+            <div class="vintage-brand-sub">Scientific Club • ENSSEA Koléa</div>
+            
+            <svg class="vintage-flourish" viewBox="0 0 500 40" fill="currentColor" style="transform: scaleY(-1);">
+              <path d="M250,20 C230,12 210,5 180,18 C160,26 140,12 110,20 C80,27 60,15 30,20 L0,20 L30,21 C60,26 80,14 110,21 C140,29 160,15 180,23 C210,36 230,29 250,21 C270,29 290,36 320,23 C340,15 360,29 390,21 C420,14 440,26 470,21 L500,20 L470,20 C440,15 420,27 390,20 C360,12 340,26 320,18 C290,5 270,12 250,20 Z"/>
+              <circle cx="250" cy="20" r="3.5"/>
+              <circle cx="232" cy="20" r="2"/>
+              <circle cx="268" cy="20" r="2"/>
+            </svg>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ALTERNATING DEPARTMENTS -->
     <section>
       <h2 class="section-title">
         <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
         The Specialists & Strategic Cells
       </h2>
-      <p class="section-sub">Every successful heist requires specialists. Find your squad in our operations.</p>
-      
-      <div class="dept-grid">
-        <div class="dept-card">
-          <div class="dept-header">
-            <span class="dept-title">IT</span>
-            <span class="dept-role-tag">The Masterminds</span>
+      <p class="section-sub">Every department reflects a specific mastermind persona from the heist.</p>
+
+      <div class="timeline-container">
+        <!-- IT (LEFT) -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="character-persona-header">
+              <div class="char-avatars">
+                <img src="profissor.jpg" alt="The Professor" class="char-avatar-img" onerror="this.src='mask.PNG'">
+                <img src="rio.jfif" alt="Rio" class="char-avatar-img" onerror="this.src='mask.PNG'">
+              </div>
+              <div class="char-meta-text">
+                <span class="char-persona-title">Tactical Roles</span>
+                <span class="char-names">The Professor & Rio</span>
+              </div>
+            </div>
+
+            <div class="dept-title-badge">IT CELL</div>
+            <div class="dept-lead-person">Led by Lehmil Bahaeddine</div>
+
+            <div class="why-chosen-box">
+              <strong>WHY THIS DUO?</strong>
+              Just like <strong>The Professor</strong> designs the intricate algorithms and anticipates every contingency, and <strong>Rio</strong> hacks physical and digital security protocols, the IT department builds the core architectures, automates systems, and deploys predictive machine learning models.
+            </div>
+
+            <ul class="dept-subunits">
+              <li>Machine Learning & DL Pipelines</li>
+              <li>Software Development & Tooling</li>
+              <li>Algorithms, Python & R Environments</li>
+            </ul>
           </div>
-          <div class="dept-lead">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Led by Lehmil Bahaeddine
-          </div>
-          <ul class="dept-subunits">
-            <li>Machine Learning & DL Pipelines</li>
-            <li>Software Development & Tooling</li>
-            <li>Algorithms, Python & R Environments</li>
-          </ul>
         </div>
 
-        <div class="dept-card">
-          <div class="dept-header">
-            <span class="dept-title">RE</span>
-            <span class="dept-role-tag">The Negotiators</span>
+        <!-- RE (RIGHT) -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="character-persona-header">
+              <div class="char-avatars">
+                <img src="berlin.jfif" alt="Berlin" class="char-avatar-img" onerror="this.src='mask.PNG'">
+              </div>
+              <div class="char-meta-text">
+                <span class="char-persona-title">Tactical Role</span>
+                <span class="char-names">Berlin</span>
+              </div>
+            </div>
+
+            <div class="dept-title-badge">RE CELL</div>
+            <div class="dept-lead-person">Led by Aiche Adel</div>
+
+            <div class="why-chosen-box">
+              <strong>WHY BERLIN?</strong>
+              Known for commanding presence, diplomacy, and negotiating high-stakes truces, <strong>Berlin</strong> mirrors the External Relations department’s ability to secure elite sponsorships, manage external club partnerships, and negotiate resource clearances.
+            </div>
+
+            <ul class="dept-subunits">
+              <li>Corporate Sponsorships & Deals</li>
+              <li>Documentation & Strategic Resources</li>
+              <li>Inter-University Club Alliances</li>
+            </ul>
           </div>
-          <div class="dept-lead">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Led by Aiche Adel
-          </div>
-          <ul class="dept-subunits">
-            <li>Corporate Sponsorships & Deals</li>
-            <li>Documentation & Strategic Resources</li>
-            <li>Inter-University Club Alliances</li>
-          </ul>
         </div>
 
-        <div class="dept-card">
-          <div class="dept-header">
-            <span class="dept-title">RH</span>
-            <span class="dept-role-tag">The Strategists</span>
+        <!-- RH (LEFT) -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="character-persona-header">
+              <div class="char-avatars">
+                <img src="nairobi.jfif" alt="Nairobi" class="char-avatar-img" onerror="this.src='mask.PNG'">
+              </div>
+              <div class="char-meta-text">
+                <span class="char-persona-title">Tactical Role</span>
+                <span class="char-names">Nairobi</span>
+              </div>
+            </div>
+
+            <div class="dept-title-badge">RH CELL</div>
+            <div class="dept-lead-person">Led by Houssem Eddine Marmi</div>
+
+            <div class="why-chosen-box">
+              <strong>WHY NAIROBI?</strong>
+              Famous for rallying the troops, maintaining operational morale, and driving execution without flaw, <strong>Nairobi</strong> personifies the Human Resources cell: managing talent development, keeping timelines synchronized, and fostering club discipline.
+            </div>
+
+            <ul class="dept-subunits">
+              <li>Quality, Development & Planning</li>
+              <li>Talent Roadmaps & Discipline</li>
+              <li>Digital Intake Systems Control</li>
+            </ul>
           </div>
-          <div class="dept-lead">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Led by Houssem Eddine Marmi
-          </div>
-          <ul class="dept-subunits">
-            <li>Quality, Development & Planning</li>
-            <li>Talent Roadmaps & Discipline</li>
-            <li>Digital Intake Systems Control</li>
-          </ul>
         </div>
 
-        <div class="dept-card">
-          <div class="dept-header">
-            <span class="dept-title">COM</span>
-            <span class="dept-role-tag">The Voice & Propaganda</span>
+        <!-- COM (RIGHT) -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="character-persona-header">
+              <div class="char-avatars">
+                <img src="tokyo.jfif" alt="Tokyo" class="char-avatar-img" onerror="this.src='mask.PNG'">
+              </div>
+              <div class="char-meta-text">
+                <span class="char-persona-title">Tactical Role</span>
+                <span class="char-names">Tokyo</span>
+              </div>
+            </div>
+
+            <div class="dept-title-badge">COM CELL</div>
+            <div class="dept-lead-person">Led by Hammouri Maya</div>
+
+            <div class="why-chosen-box">
+              <strong>WHY TOKYO?</strong>
+              The narrator of the entire saga, fearless and passionate, <strong>Tokyo</strong> embodies the Communication team: capturing the unfiltered story, creating captivating visuals, and controlling the public narrative across media frequencies.
+            </div>
+
+            <ul class="dept-subunits">
+              <li>Tactical Visual & Brand Identity</li>
+              <li>Cinematic Video & Media Production</li>
+              <li>Community Outreach & Social Campaigns</li>
+            </ul>
           </div>
-          <div class="dept-lead">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Led by Hammouri Maya
-          </div>
-          <ul class="dept-subunits">
-            <li>Tactical Visual & Brand Identity</li>
-            <li>Cinematic Video & Media Production</li>
-            <li>Community Outreach & Social Campaigns</li>
-          </ul>
         </div>
       </div>
     </section>
 
+    <!-- SOUVENIRS CORNER (COMPACT & BALANCED) -->
+    <section>
+      <h2 class="section-title">
+        <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
+        The Professor's Souvenir Corner
+      </h2>
+      <p class="section-sub">Collect tangible artifacts and exclusive prints from the master plan at our physical booth.</p>
+
+      <div class="souvenirs-grid">
+        <!-- 1. The Mask -->
+        <div class="souvenir-card">
+          <div class="souvenir-icon-box">
+            <img src="mask.PNG" alt="Dali Mask">
+          </div>
+          <span class="souvenir-tag">Tactical Insignia</span>
+          <div class="souvenir-title">The Dali Mask</div>
+          <p class="souvenir-desc">The authentic symbol of defiance and collective genius. Available at the booth for recruit photographs.</p>
+        </div>
+
+        <!-- 2. The Origami Swan -->
+        <div class="souvenir-card">
+          <div class="souvenir-icon-box">
+            <img src="origami.jpg" alt="Professor's Origami Swan" onerror="this.src='mask.PNG'">
+          </div>
+          <span class="souvenir-tag">Mindset & Calculation</span>
+          <div class="souvenir-title">The Professor's Origami</div>
+          <p class="souvenir-desc">Handcrafted origami folded birds straight from the Professor's table, symbolizing predictive foresight.</p>
+        </div>
+
+        <!-- 3. The Vintage Newspaper Souvenir -->
+        <div class="souvenir-card">
+          <div class="souvenir-icon-box">
+            <img src="vintage.jpg" alt="Vintage Newspaper Gazette" onerror="this.src='mask.PNG'">
+          </div>
+          <span class="souvenir-tag">Leaked Press Release</span>
+          <div class="souvenir-title">The Resistance Gazette</div>
+          <p class="souvenir-desc">Physical printed copies of the vintage heist newspaper summarizing club cells to take home.</p>
+        </div>
+
+        <!-- 4. Custom Heist Badge / Stickers -->
+        <div class="souvenir-card">
+          <div class="souvenir-icon-box">
+            <img src="dataspacelogo.PNG" alt="Data Space Seal">
+          </div>
+          <span class="souvenir-tag">Official Seal</span>
+          <div class="souvenir-title">Resistance Stickers & Merch</div>
+          <p class="souvenir-desc">High-grade vinyl decals and blueprints emblazoned with Data Space algorithms to stick to your laptops.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONS -->
     <section>
       <h2 class="section-title">
         <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
@@ -751,7 +1402,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             Summer Camp
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">Hands-on training series covering <strong>Python, R, SQL, and Power BI</strong>, concluding with certified credentials for participating students to validate practical industry skills.</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Hands-on training series covering <strong>Python, R, SQL, and Power BI</strong>, concluding with certified credentials for participating students to validate practical industry skills.[cite: 1]</p>
         </div>
 
         <div class="event-card">
@@ -760,7 +1411,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             NeuralX
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">A 72-hour relentless datathon. Compete under pressure to formulate, model, and deploy predictive systems for high-value data challenges.</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">A 72-hour relentless datathon. Compete under pressure to formulate, model, and deploy predictive systems for high-value data challenges.[cite: 1]</p>
         </div>
 
         <div class="event-card">
@@ -769,17 +1420,18 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
             AI Camp
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">Intensive preparatory bootcamps diving directly into deep neural network architectures, statistical inference, and rapid problem execution.</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Intensive preparatory bootcamps diving directly into deep neural network architectures, statistical inference, and rapid problem execution.[cite: 1]</p>
         </div>
       </div>
     </section>
 
+    <!-- GAMING ZONE -->
     <section>
       <h2 class="section-title">
         <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
         Crack The Vault & Live Challenges
       </h2>
-      <p class="section-sub">Scan the mission QR code during the Open Day to unlock the challenge room and compete live.</p>
+      <p class="section-sub">Scan the mission QR code during the Open Day to unlock the challenge room and compete live.[cite: 1]</p>
       
       <div class="games-grid-2">
         <div class="dept-card game-card">
@@ -814,13 +1466,31 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <img src="mask.PNG" alt="Resistance Mask" class="footer-mask" />
       <h2>Join The Resistance</h2>
-      <p style="color: var(--text-muted); margin-top: 0.5rem;">Scan directly to establish secure comms and join our official hubs.</p>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">Scan directly to establish secure comms and join our official hubs.[cite: 1]</p>
       
-      <div class="qr-container">
+     <div class="qr-container">
+        <!-- LinkedIn QR Code (New) -->
+        <div class="qr-card">
+          <div class="qr-wrapper">
+            <img 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdata-space-48393433a" 
+              alt="LinkedIn QR Code"
+              loading="lazy"
+            />
+          </div>
+          <div class="qr-title">LinkedIn</div>
+          <div class="qr-desc">Connect with Data Space</div>
+          <a href="https://www.linkedin.com/in/data-space-48393433a?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="qr-link">
+            Open Network &rarr;
+          </a>
+        </div>
+
+        <!-- Instagram QR Code -->
         <div class="qr-card">
           <div class="qr-wrapper">
             <img 
@@ -836,6 +1506,7 @@
           </a>
         </div>
 
+        <!-- Discord QR Code -->
         <div class="qr-card">
           <div class="qr-wrapper">
             <img 
@@ -846,13 +1517,13 @@
           </div>
           <div class="qr-title">Discord Headquarters</div>
           <div class="qr-desc">Join Data Space Comms</div>
-          <a href="https://discord.com/channels/1346243144437727262/1346243144987054102" target="_blank" rel="noopener noreferrer" class="qr-link">
+          <a href="https://discord.gg/4g2TM9aXy" target="_blank" rel="noopener noreferrer" class="qr-link">
             Open Channel &rarr;
           </a>
         </div>
       </div>
 
-      <p class="school-tagline">National Higher School of Statistics and Applied Economics (ENSSEA)</p>
+      <p class="school-tagline">National Higher School of Statistics and Applied Economics (ENSSEA)[cite: 1]</p>
     </div>
   </footer>
 
