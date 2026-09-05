@@ -49,31 +49,13 @@
       transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
     }
 
-  body {
+    body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    /* في الـ Dark Mode: دمج الصورة مع طبقة ظل سوداء */
-    :root[data-theme="dark"] body {
-      background-image: 
-        radial-gradient(circle at center, rgba(7, 7, 9, 0.8) 0%, rgba(7, 7, 9, 0.96) 85%),
-        url('data-heist-logo.jfif');
-    }
-
-    /* في الـ Light Mode: طبقة بيضاء بنسبة 94% تترك الشعار كأثر ورقي خافت جداً */
-    :root[data-theme="light"] body {
-      background-image: 
-        radial-gradient(circle at center, rgba(248, 250, 252, 0.92) 0%, rgba(248, 250, 252, 0.98) 85%),
-        url('data-heist-logo.jfif');
     }
 
     .bg-ambient {
@@ -359,7 +341,7 @@
       font-size: 1rem;
     }
 
-    /* REALISTIC VINTAGE NEWSPAPER PRESENTATION */
+    /* VINTAGE NEWSPAPER PRESENTATION */
     .newspaper-stage {
       perspective: 1400px;
       margin: 2rem auto 4rem;
@@ -563,7 +545,6 @@
       font-size: 0.8rem;
     }
 
-    /* VINTAGE ORNAMENTAL FOOTER */
     .vintage-footer-brand {
       margin-top: 16px;
       text-align: center;
@@ -600,7 +581,7 @@
       margin-bottom: 2px;
     }
 
-    /* ALTERNATING TIMELINE FOR DEPARTMENTS */
+    /* DEPARTMENTS TIMELINE */
     .timeline-container {
       position: relative;
       max-width: 1100px;
@@ -766,7 +747,7 @@
       font-weight: bold;
     }
 
-    /* COMPACT SOUVENIRS CORNER */
+    /* SOUVENIRS */
     .souvenirs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -883,7 +864,259 @@
       gap: 0.5rem;
     }
 
-    /* GAMING ZONE */
+    /* ===================================================
+       THE PHYSICAL VAULT FEATURED SHOWCASE
+    =================================================== */
+    .physical-vault-showcase {
+      background: var(--bg-card);
+      border: 1.5px solid rgba(225, 29, 72, 0.35);
+      border-radius: 24px;
+      padding: 2.4rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(225, 29, 72, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .physical-vault-showcase::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .vault-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vault-photo-wrap {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .vault-photo-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .vault-photo-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .vault-badge-corner {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #b91c1c;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .vault-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .vault-headline {
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+
+    .vault-headline span {
+      color: var(--accent);
+    }
+
+    .vault-desc {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .vault-riddles-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+    }
+
+    .riddles-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--gold-accent);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .riddles-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .riddles-list li {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      line-height: 1.45;
+    }
+
+    .riddle-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #ffffff;
+      background: rgba(225, 29, 72, 0.4);
+      border: 1px solid var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .vault-loot-bar {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid var(--gold-accent);
+      border-radius: 0 10px 10px 0;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .vault-loot-bar strong {
+      color: var(--gold-accent);
+      display: block;
+      margin-bottom: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* IN-PERSON BOOTH ARENAS GRID */
+    .in-person-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .physical-game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .physical-game-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 35px rgba(225, 29, 72, 0.22);
+    }
+
+    .card-thumb-wrap {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .card-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .physical-game-card:hover .card-thumb-wrap img {
+      transform: scale(1.06);
+    }
+
+    .game-badge-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--accent);
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .game-content-box {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .game-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.45rem;
+    }
+
+    .game-card-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.1rem;
+    }
+
+    .game-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold-accent);
+    }
+
+    /* GAMING ZONE (ONLINE CHALLENGES) */
     .games-grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -893,40 +1126,66 @@
     }
 
     .game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2.4rem 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .qr-placeholder {
+    .game-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 30px rgba(225, 29, 72, 0.25);
+    }
+
+    .game-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .game-sub {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    .qr-wrapper {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 14px;
+      display: inline-block;
+      margin: 1.3rem 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    .qr-wrapper img {
+      display: block;
       width: 170px;
       height: 170px;
-      border: 2px dashed var(--border-color);
-      border-radius: 14px;
-      margin: 1.3rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--qr-bg);
-      gap: 0.6rem;
-      color: var(--text-muted);
     }
 
-    .qr-placeholder img {
-      width: 50px;
-      height: 50px;
-      opacity: 0.75;
-    }
-
-    .qr-placeholder span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+    .qr-link {
+      font-size: 0.92rem;
       font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
     }
 
+    .qr-link:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border-color);
       padding: 5rem 0 3.5rem;
@@ -970,21 +1229,6 @@
       border-color: var(--accent);
     }
 
-    .qr-wrapper {
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 14px;
-      display: inline-block;
-      margin-bottom: 1.3rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-    }
-
-    .qr-wrapper img {
-      display: block;
-      width: 170px;
-      height: 170px;
-    }
-
     .qr-title {
       font-size: 1.2rem;
       font-weight: 800;
@@ -997,26 +1241,13 @@
       margin-bottom: 1.1rem;
     }
 
-    .qr-link {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .qr-link:hover {
-      text-decoration: underline;
-    }
-
     .school-tagline {
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
     @media (max-width: 900px) {
+      .vault-showcase-grid { grid-template-columns: 1fr; }
       .paper-columns-grid { grid-template-columns: repeat(2, 1fr); }
       .agenda-items { grid-template-columns: repeat(2, 1fr); }
       .paper-col:nth-child(2) { border-right: none; }
@@ -1103,10 +1334,10 @@
       </div>
     </section>
 
-    <!-- REALISTIC VINTAGE NEWSPAPER SECTION -->
-    <section>
+    <!-- VINTAGE NEWSPAPER SECTION -->
+    <section id="vintage-newspaper-section">
       <h2 class="section-title">
-        <img src="vintage.jpg" alt="Mask" class="title-mask-icon" />
+        <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
         The Resistance Gazette — El Periódico
       </h2>
       <p class="section-sub">A leaked vintage press dispatch documenting the tactical deployment of DATA SPACE at ENSSEA.</p>
@@ -1181,7 +1412,6 @@
             </ul>
           </div>
 
-          <!-- VINTAGE ORNAMENTAL BRANDING -->
           <div class="vintage-footer-brand">
             <svg class="vintage-flourish" viewBox="0 0 500 40" fill="currentColor">
               <path d="M250,20 C230,12 210,5 180,18 C160,26 140,12 110,20 C80,27 60,15 30,20 L0,20 L30,21 C60,26 80,14 110,21 C140,29 160,15 180,23 C210,36 230,29 250,21 C270,29 290,36 320,23 C340,15 360,29 390,21 C420,14 440,26 470,21 L500,20 L470,20 C440,15 420,27 390,20 C360,12 340,26 320,18 C290,5 270,12 250,20 Z"/>
@@ -1336,7 +1566,7 @@
       </div>
     </section>
 
-    <!-- SOUVENIRS CORNER (COMPACT & BALANCED) -->
+    <!-- SOUVENIRS CORNER -->
     <section>
       <h2 class="section-title">
         <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
@@ -1345,7 +1575,6 @@
       <p class="section-sub">Collect tangible artifacts and exclusive prints from the master plan at our physical booth.</p>
 
       <div class="souvenirs-grid">
-        <!-- 1. The Mask -->
         <div class="souvenir-card">
           <div class="souvenir-icon-box">
             <img src="mask.PNG" alt="Dali Mask">
@@ -1355,7 +1584,6 @@
           <p class="souvenir-desc">The authentic symbol of defiance and collective genius. Available at the booth for recruit photographs.</p>
         </div>
 
-        <!-- 2. The Origami Swan -->
         <div class="souvenir-card">
           <div class="souvenir-icon-box">
             <img src="origami.jpg" alt="Professor's Origami Swan" onerror="this.src='mask.PNG'">
@@ -1365,17 +1593,15 @@
           <p class="souvenir-desc">Handcrafted origami folded birds straight from the Professor's table, symbolizing predictive foresight.</p>
         </div>
 
-        <!-- 3. The Vintage Newspaper Souvenir -->
         <div class="souvenir-card">
           <div class="souvenir-icon-box">
-            <img src="vintage.jpg" alt="Vintage Newspaper Gazette" onerror="this.src='mask.PNG'">
+            <img src="data-heist-logo.jfif" alt="Vintage Newspaper Gazette" onerror="this.src='mask.PNG'">
           </div>
           <span class="souvenir-tag">Leaked Press Release</span>
           <div class="souvenir-title">The Resistance Gazette</div>
           <p class="souvenir-desc">Physical printed copies of the vintage heist newspaper summarizing club cells to take home.</p>
         </div>
 
-        <!-- 4. Custom Heist Badge / Stickers -->
         <div class="souvenir-card">
           <div class="souvenir-icon-box">
             <img src="dataspacelogo.PNG" alt="Data Space Seal">
@@ -1425,18 +1651,135 @@
       </div>
     </section>
 
-    <!-- GAMING ZONE -->
-    <section>
+    <!-- ===================================================
+         SECTION: PHYSICAL VAULT & BOOTH ARENAS
+    =================================================== -->
+    <section id="challenges-section">
       <h2 class="section-title">
         <img src="mask.PNG" alt="Mask" class="title-mask-icon" />
-        Crack The Vault & Live Challenges
+        Heist Challenges & Tactical Arenas
       </h2>
-      <p class="section-sub">Scan the mission QR code during the Open Day to unlock the challenge room and compete live.[cite: 1]</p>
+      <p class="section-sub">Engage in tangible booth operations, decrypt analytical locks, and claim official resistance clearance.</p>
+
+      <!-- 1. FEATURED PHYSICAL VAULT CHALLENGE (GIFT.JFIF) -->
+      <div class="physical-vault-showcase">
+        <div class="vault-showcase-grid">
+          <div class="vault-photo-wrap">
+            <img src="gift.jfif" alt="Physical Data Vault Box with 3-digit Padlock and VIP Pass" onerror="this.src='mask.PNG'" />
+            <span class="vault-badge-corner">60S PHYSICAL CHALLENGE</span>
+          </div>
+
+          <div class="vault-details">
+            <h3 class="vault-headline">The Data Vault: <span>60-Second Cipher Breach</span></h3>
+            <p class="vault-desc">
+              A locked heist vault sits on our physical table secured by a 3-digit mechanical cipher. You are handed a classified dispatch containing three analytical clues. Solve the calculations, align the tumblers, and pop the lock before the 60-second alarm rings!
+            </p>
+
+            <div class="vault-riddles-card">
+              <div class="riddles-header">
+                <span>🔐</span> CLASSIFIED LOCK DECRYPTION PROTOCOL [SAMPLE]
+              </div>
+              <ul class="riddles-list">
+                <li>
+                  <span class="riddle-tag">DIGIT 1</span>
+                  <span><strong>Club Architecture:</strong> Total operational departments active in Data Space? <span style="color: var(--gold-accent); font-family:'JetBrains Mono'; font-weight:800;">(IT, RE, RH, COM &rarr; 4)</span>[cite: 1]</span>
+                </li>
+                <li>
+                  <span class="riddle-tag">DIGIT 2</span>
+                  <span><strong>Central Tendency:</strong> Mean average of data points [2, 4, 6, 8, 10]? <span style="color: var(--gold-accent); font-family:'JetBrains Mono'; font-weight:800;">(Sum: 30 &divide; 5 &rarr; 6)</span></span>
+                </li>
+                <li>
+                  <span class="riddle-tag">DIGIT 3</span>
+                  <span><strong>Algorithmic Series:</strong> Memory consumption decrement: 19 &rarr; 14 &rarr; 10 &rarr; 7 &rarr; [X]? <span style="color: var(--gold-accent); font-family:'JetBrains Mono'; font-weight:800;">(-5, -4, -3, -2 &rarr; 5)</span></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="vault-loot-bar">
+              <strong>🎁 VAULT BOUNTY REWARD</strong>
+              Every operative who unlocks the vault within 60 seconds claims an authentic <strong>Golden Heist Sweet / Treat</strong>, vinyl <strong>Dali resistance stickers</strong>, and an official <strong>VIP Clearance Pass</strong>!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. IN-PERSON BOOTH GAMES (CHESS, BARGAIN & MEMORY CARDS) -->
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+        <span>🎯</span> Live In-Person Table Arenas
+      </h3>
       
+      <div class="in-person-grid">
+        <!-- Game 1: The Hostage Bargain -->
+        <div class="physical-game-card">
+          <div class="card-thumb-wrap">
+            <img src="bargain.jfif" alt="The Hostage Bargain Card Arena" onerror="this.src='mask.PNG'">
+            <span class="game-badge-tag">RE DIPLOMACY</span>
+          </div>
+          <div class="game-content-box">
+            <div>
+              <div class="game-card-title">The Hostage Bargain 🤝</div>
+              <p class="game-card-desc">
+                Draw a standard hostage card from the deck. Face our senior negotiators and deliver a sharp, Money Heist-inspired cinematic argument in 45 seconds to convince them to trade your common pass for an elite VIP Clearance Card!
+              </p>
+            </div>
+            <div class="game-meta-row">
+              <span>🎭 Role: Negotiator</span>
+              <span>⏱️ 45 Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game 2: The Professor's Chess Gambit -->
+        <div class="physical-game-card">
+          <div class="card-thumb-wrap">
+            <img src="chess.jfif" alt="Professor Chess Board Arena" onerror="this.src='mask.PNG'">
+            <span class="game-badge-tag">TACTICAL LOGIC</span>
+          </div>
+          <div class="game-content-box">
+            <div>
+              <div class="game-card-title">The Professor's Gambit ♟️</div>
+              <p class="game-card-desc">
+                A live tactical chessboard displaying intense endgame puzzles straight from the Professor's whiteboard. Spot the lethal mate-in-2 combination or anticipate opponent lines to earn instant mastermind honors.
+              </p>
+            </div>
+            <div class="game-meta-row">
+              <span>🧠 Strategic Foresight</span>
+              <span>⚡ Live Board</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game 3: Memory Outlier Matrix (Flipped Cards) -->
+        <div class="physical-game-card">
+          <div class="card-thumb-wrap">
+            <img src="memory.jfif" alt="Memory Cards Arena" onerror="this.src='mask.PNG'">
+            <span class="game-badge-tag">ANOMALY DETECTION</span>
+          </div>
+          <div class="game-content-box">
+            <div>
+              <div class="game-card-title">Memory Outlier Matrix 🃏</div>
+              <p class="game-card-desc">
+                A grid of flipped face-down cards matching Data Space frameworks (Python, R, SQL) and Heist insignias. Uncover the hidden pairs and detect the single rogue anomaly card before the clock expires!
+              </p>
+            </div>
+            <div class="game-meta-row">
+              <span>🔍 Pattern Matching</span>
+              <span>⏱️ 60 Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. DIGITAL & INTERACTIVE GAMES (ONLINE CORNER) -->
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+        <span>📱</span> Mobile & QR Challenge Terminals
+      </h3>
+
       <div class="games-grid-2">
-        <div class="dept-card game-card">
-          <div class="dept-title" style="font-size: 1.45rem;">The Vault Breaker 🔓</div>
-          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">60-Second Data Riddle</p>
+        <!-- Game 1: The Vault Breaker Web Riddle -->
+        <div class="game-card">
+          <div class="game-title">The Vault Breaker 🔓</div>
+          <p class="game-sub">60-Second Data Riddle</p>
           
           <div class="qr-wrapper">
             <img 
@@ -1446,15 +1789,15 @@
             />
           </div>
 
-          <a href="https://hichemmzd.github.io/Game/" target="_blank" rel="noopener noreferrer" class="qr-link" style="margin-top: 0.5rem;">
+          <a href="https://hichemmzd.github.io/Game/" target="_blank" rel="noopener noreferrer" class="qr-link">
             Breach The Vault &rarr;
           </a>
         </div>
 
-       <!-- Game 2: Who Are You in Money Heist? -->
-        <div class="dept-card game-card">
-          <div class="dept-title" style="font-size: 1.45rem;">Who Are You in Heist? 🎭</div>
-          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Tactical Persona Assessment</p>
+        <!-- Game 2: Tactical Persona Quiz (Who Are You in Money Heist?) -->
+        <div class="game-card">
+          <div class="game-title">Who Are You in Heist? 🎭</div>
+          <p class="game-sub">Bilingual Tactical Assessment</p>
           
           <div class="qr-wrapper">
             <img 
@@ -1464,12 +1807,9 @@
             />
           </div>
 
-          <a href="https://hichemmzd.github.io/jeu/" target="_blank" rel="noopener noreferrer" class="qr-link" style="margin-top: 0.5rem;">
-            Take The Assessment &rarr;
+          <a href="https://hichemmzd.github.io/jeu/" target="_blank" rel="noopener noreferrer" class="qr-link">
+            Take Assessment &rarr;
           </a>
-        </div>
-
-          <span class="event-tag" style="position: static; font-size: 0.78rem;">Interactive Screen</span>
         </div>
       </div>
     </section>
@@ -1482,8 +1822,8 @@
       <h2>Join The Resistance</h2>
       <p style="color: var(--text-muted); margin-top: 0.5rem;">Scan directly to establish secure comms and join our official hubs.[cite: 1]</p>
       
-     <div class="qr-container">
-        <!-- LinkedIn QR Code (New) -->
+      <div class="qr-container">
+        <!-- LinkedIn QR Code -->
         <div class="qr-card">
           <div class="qr-wrapper">
             <img 
@@ -1509,7 +1849,7 @@
             />
           </div>
           <div class="qr-title">Instagram</div>
-          <div class="qr-desc">Follow @dataspace__</div>
+          <div class="qr-desc">Follow @dataspace__[cite: 1]</div>
           <a href="https://www.instagram.com/dataspace__?igsi=MTBmb2EyY21kZnAzNw==" target="_blank" rel="noopener noreferrer" class="qr-link">
             Open Channel &rarr;
           </a>
@@ -1526,7 +1866,7 @@
           </div>
           <div class="qr-title">Discord Headquarters</div>
           <div class="qr-desc">Join Data Space Comms</div>
-          <a href="https://discord.gg/4g2TM9aXy" target="_blank" rel="noopener noreferrer" class="qr-link">
+          <a href="https://discord.com/channels/1346243144437727262/1346243144987054102" target="_blank" rel="noopener noreferrer" class="qr-link">
             Open Channel &rarr;
           </a>
         </div>
@@ -1545,16 +1885,9 @@
     themeToggle.addEventListener('click', () => {
       const currentTheme = root.getAttribute('data-theme');
       const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
       root.setAttribute('data-theme', targetTheme);
-      
-      if (targetTheme === 'light') {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Dark Mode';
-      } else {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Light Mode';
-      }
+      themeIcon.textContent = targetTheme === 'light' ? '🌙' : '☀️';
+      themeText.textContent = targetTheme === 'light' ? 'Dark Mode' : 'Light Mode';
     });
   </script>
 </body>
